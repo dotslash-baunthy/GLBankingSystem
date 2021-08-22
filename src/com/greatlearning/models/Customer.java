@@ -9,7 +9,7 @@ public class Customer {
 	public Customer(String password, int bankAccountNo) {
 		this.password = password;
 		this.bankAccountNo = bankAccountNo;
-			this.balance = 1000;
+			this.balance = 1000000;
 	}
 
 	public Customer() {
