@@ -12,16 +12,16 @@ public class Driver {
 
 		Customer customer1 = new Customer("password", 123456, 1000);
 
-		Scanner sc = new Scanner(System.in);
+		Scanner scn = new Scanner(System.in);
 		String password;
 		int bankAccountNo;
 
 		System.out.println("----------Welcome to the login page----------");
 		System.out.println();
 		System.out.print("Enter your account number: ");
-		bankAccountNo = sc.nextInt();
+		bankAccountNo = scn.nextInt();
 		System.out.print("Enter the password: ");
-		password = sc.next();
+		password = scn.next();
 
 		Customer loggedInCustomer = new Customer(password, bankAccountNo, 1000);
 
@@ -35,14 +35,12 @@ public class Driver {
 				System.out.println("0. Logout");
 				System.out.println("--------------------");
 				System.out.print("What do you want to do? ");
-				option = sc.nextInt();
-//				sc.close();
-
+				option = scn.nextInt();
 				switch (option) {
 					case 0:
 						option = 0;
 						bankingService.logOut();
-						sc.close();
+						scn.close();
 						break;
 					case 1:
 						bankingService.deposit(loggedInCustomer);
