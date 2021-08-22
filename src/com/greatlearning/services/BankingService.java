@@ -57,6 +57,8 @@ public class BankingService {
 			System.out.print("Enter the account no. to be transferred to: ");
 			transferAccountNumber = scn.nextInt();
 
+			// Check if the account number to be tranferred to exists in our database (from
+			// the two customers added)
 			if (transferAccountNumber == otherCustomer.getBankAccountNo()) {
 				if (loggedIncustomer.getBalance() >= amount) {
 					otherCustomer.setBalance(otherCustomer.getBalance() + amount);

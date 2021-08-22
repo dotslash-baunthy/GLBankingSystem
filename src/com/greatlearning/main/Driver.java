@@ -24,11 +24,15 @@ public class Driver {
 		System.out.print("Enter the password: ");
 		password = scn.next();
 
+		// Create new customer object to compare with existing customer objects
 		Customer loggedInCustomer = new Customer(password, bankAccountNo);
+		// Since there are only two customers, the other customer will always be the one
+		// not selected
 		Customer otherCustomer = new Customer();
 
 		if (validCustomer(loggedInCustomer, customer1, customer2)
 				|| validCustomer(loggedInCustomer, customer2, customer2)) {
+			// Set the other customer
 			if (bankAccountNo == 123456) {
 				otherCustomer = customer2;
 			} else {
@@ -72,6 +76,7 @@ public class Driver {
 		}
 	}
 
+	// Validate credentials of the user who is logging in
 	private static boolean validCustomer(Customer loggedInCustomer, Customer customer1, Customer customer2) {
 		if (loggedInCustomer.getBankAccountNo() == customer1.getBankAccountNo()
 				&& loggedInCustomer.getPassword().equals(customer1.getPassword())

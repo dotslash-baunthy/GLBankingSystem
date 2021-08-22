@@ -9,11 +9,11 @@ public class Customer {
 	public Customer(String password, int bankAccountNo) {
 		this.password = password;
 		this.bankAccountNo = bankAccountNo;
-			this.balance = 100;
+			this.balance = 1000;
 	}
 
 	public Customer() {
-
+		
 	}
 
 	public String getPassword() {
