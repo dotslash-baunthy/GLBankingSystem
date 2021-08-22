@@ -10,7 +10,8 @@ public class Driver {
 	public static void main(String[] args) {
 		BankingService bankingService = new BankingService();
 
-		Customer customer1 = new Customer("password", 123456, 1000);
+		Customer customer1 = new Customer("password", 123456);
+		Customer customer2 = new Customer("PaSsWoRd", 12345);
 
 		Scanner scn = new Scanner(System.in);
 		String password;
@@ -23,15 +24,23 @@ public class Driver {
 		System.out.print("Enter the password: ");
 		password = scn.next();
 
-		Customer loggedInCustomer = new Customer(password, bankAccountNo, 1000);
+		Customer loggedInCustomer = new Customer(password, bankAccountNo);
+		Customer otherCustomer = new Customer();
 
-		if (validCustomer(loggedInCustomer, customer1)) {
+		if (validCustomer(loggedInCustomer, customer1, customer2)
+				|| validCustomer(loggedInCustomer, customer2, customer2)) {
+			if (bankAccountNo == 123456) {
+				otherCustomer = customer2;
+			} else {
+				otherCustomer = customer1;
+			}
 			int option = 0;
 			do {
 				System.out.println("--------------------");
 				System.out.println("1. Deposit");
 				System.out.println("2. Withdrawal");
 				System.out.println("3. Transfer");
+				System.out.println("4. Check balance");
 				System.out.println("0. Logout");
 				System.out.println("--------------------");
 				System.out.print("What do you want to do? ");
@@ -49,7 +58,10 @@ public class Driver {
 						bankingService.withdraw(loggedInCustomer);
 						break;
 					case 3:
-						bankingService.transfer(loggedInCustomer);
+						bankingService.transfer(loggedInCustomer, otherCustomer);
+						break;
+					case 4:
+						bankingService.checkBalance(loggedInCustomer);
 						break;
 					default:
 						System.out.println("Please enter a valid option from the list provided");
@@ -60,8 +72,14 @@ public class Driver {
 		}
 	}
 
-	private static boolean validCustomer(Customer loggedInCustomer, Customer customer1) {
-		return loggedInCustomer.getBankAccountNo() == customer1.getBankAccountNo()
-				&& loggedInCustomer.getPassword().equals(customer1.getPassword());
+	private static boolean validCustomer(Customer loggedInCustomer, Customer customer1, Customer customer2) {
+		if (loggedInCustomer.getBankAccountNo() == customer1.getBankAccountNo()
+				&& loggedInCustomer.getPassword().equals(customer1.getPassword())
+				|| (loggedInCustomer.getBankAccountNo() == customer2.getBankAccountNo()
+						&& loggedInCustomer.getPassword().equals(customer2.getPassword()))) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
