@@ -6,13 +6,14 @@ public class Customer {
 	private int bankAccountNo;
 	private int balance;
 
-	public Customer(String password, int bankAccountNo, int balance) {
+	public Customer(String password, int bankAccountNo) {
 		this.password = password;
 		this.bankAccountNo = bankAccountNo;
-		this.balance = balance;
+			this.balance = 100;
 	}
 
 	public Customer() {
+
 	}
 
 	public String getPassword() {
